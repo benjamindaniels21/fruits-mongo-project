@@ -1,11 +1,11 @@
 const MongoClient = require("mongodb").MongoClient;
-const assert = require("assert");
+const assert = require("assert"); //testing and validation
 
 //connection URL
 const url = "mongodb://localhost:27017";
 
 //DB Name
-const dbName = "myproject";
+const dbName = "fruitsDB";
 
 //Create MongoDB Client
 const client = new MongoClient(url);
