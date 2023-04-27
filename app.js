@@ -1,21 +1,31 @@
-const MongoClient = require("mongodb").MongoClient;
-const assert = require("assert"); //testing and validation
+//jshint esversion:6
 
-//connection URL
+const MongoClient = require("mongodb").MongoClient;
+
+const assert = require("assert");
+
+// Connection URL
+
 const url = "mongodb://localhost:27017";
 
-//DB Name
+// Database Name
+
 const dbName = "fruitsDB";
 
-//Create MongoDB Client
-const client = new MongoClient(url);
+// Create a new MongoClient
 
-//use connect method to connect to the server
-client.connect((err) => {
+const client = new MongoClient(url, { useUnifiedTopology: true });
+
+// Use connect method to connect to the Server
+
+client.connect(function (err) {
   assert.equal(null, err);
-  console.log("connected successfully to server");
+
+  console.log("Connected successfully to server");
 
   const db = client.db(dbName);
 
-  client.close();
+  insertDocuments(db, function () {
+    client.close();
+  });
 });
